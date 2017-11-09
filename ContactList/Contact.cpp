@@ -7,60 +7,70 @@ void Contact::setGender(string gender) {
 	_gender = gender;
 }
 string Contact::getGender() {
+	return _gender;
 }
 
 void Contact::setTitle(string title) {
 	_title = title;
 }
 string Contact::getTitle() {
+	return _title;
 }
 
 void Contact::setFirstName(string firstName) {
 	_firstName = firstName;
 }
 string Contact::getFirstName() {
+	return _firstName;
 }
 
 void Contact::setMiddleInitial(string middleInitial) {
 	_middleInitial = middleInitial;
 }
 string Contact::getMiddleInitial() {
+	return _middleInitial;
 }
 
 void Contact::setLastName(string lastName) {
 	_lastName = lastName;
 }
 string Contact::getLastName() {
+	return _lastName;
 }
 
 void Contact::setStreetAddress(string streetAddress) {
 	_streetAddress = streetAddress;
 }
 string Contact::getStreetAddress() {
+	return _streetAddress;
 }
 
 void Contact::setCity(string city) {
 	_city = city;
 }
 string Contact::getCity() {
+	return _city;
 }
 
 void Contact::setState(string state) {
 	_state = state;
 }
 string Contact::getState() {
+	return _state;
 }
 
 void Contact::setZipCode(string zipCode) {
 	_zipCode = zipCode;
 }
 string Contact::getZipCode() {
+	return _zipCode;
 }
 
 void Contact::setEmailAddress(string emailAddress) {
 	_emailAddress = emailAddress;
 }
 string Contact::getEmailAddress() {
+	return _emailAddress;
 
 }
 
@@ -68,6 +78,35 @@ void Contact::setBirthday(string birthday) {
 	Date birthday = Date(birthday);
 }
 string Contact::getBirthday() {
+	return _birthday.getDate();
+}
+
+string Contact::toString() {
+	string newString = "";
+	newString.append(getGender());
+	newString.append(", ");
+	newString.append(getTitle());
+	newString.append(", ");
+	newString.append(getFirstName());
+	newString.append(", ");
+	newString.append(getMiddleInitial());
+	newString.append(", ");
+	newString.append(getLastName());
+	newString.append(", ");
+	newString.append(getStreetAddress());
+	newString.append(", ");
+	newString.append(getCity());
+	newString.append(", ");
+	newString.append(getState());
+	newString.append(", ");
+	newString.append(getZipCode());
+	newString.append(", ");
+	newString.append(getEmailAddress());
+	newString.append(", ");
+	newString.append(getBirthday());
+	
+	return newString;
+
 }
 
 Contact::Contact() {

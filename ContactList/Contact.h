@@ -57,5 +57,7 @@ public:
 	void setBirthday(string);
 	string getBirthday();
 
+	string toString();
+
 };
 
