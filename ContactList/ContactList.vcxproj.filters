@@ -27,6 +27,9 @@
     <ClCompile Include="ContactList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MenuIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Contact.h">
@@ -38,5 +41,11 @@
     <ClInclude Include="ContactList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MenuIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FakeNames.csv" />
   </ItemGroup>
 </Project>

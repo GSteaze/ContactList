@@ -24,13 +24,13 @@ public:
 
 	void fillFromFile();
 
-	void searchByLastName();
+	vector<Contact> searchByLastName(string);
 
-	void searchByFirstName();
+	vector<Contact> searchByFirstName(string);
 
-	void searchByCity();
+	vector<Contact> searchByCity(string);
 
-	void deleteContact();
+	void deleteContact(string);
 
 	void deleteAllContacts();
 

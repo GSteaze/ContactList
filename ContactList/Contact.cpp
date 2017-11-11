@@ -115,6 +115,10 @@ Contact::Contact() {
 
 Contact::Contact(string contactLine)
 {
+	if (contactLine[0] >= '0' && contactLine[0] <= '9') {
+		contactLine.erase(0, contactLine.find(',') + 1);
+	}
+
 	int fieldNumber = 0;
 	size_t pos = 0;
 	string token;
