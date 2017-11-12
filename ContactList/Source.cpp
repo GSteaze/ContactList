@@ -6,12 +6,10 @@ using namespace std;
 
 int main() {
 
-	//MenuIO menu = MenuIO();
+	MenuIO menu = MenuIO();
 
-	TestCode test = TestCode();
-	test.testContact();
-	test.testContactList();
-	//test.testMenuIO();
+	//TestCode test = TestCode();
+	//test.testContact();
 
 	system("pause");
 	return 0;

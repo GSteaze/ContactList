@@ -60,6 +60,7 @@ void MenuIO::displayMenu()
 		case 4: cout << "Are you sure that you would like to delete these contacts?" << endl;
 			userYesOrNo = stringValidator("'Y' or 'N'");
 			if (userYesOrNo == "Y" || userYesOrNo == "y") {
+				cout << "Deleting contacts..." << endl;
 				clearContacts();
 				cout << "Contacts cleared." << endl;
 			}
@@ -87,11 +88,15 @@ vector<Contact> MenuIO::findContact()
 	cout << "Search by : " << endl
 		<< "1. Last Name" << endl
 		<< "2. First Name" << endl
-		<< "3. City of Residence" << endl;
+		<< "3. City of Residence" << endl
+		<< "4. Birth Month" << endl
+		<< "5. Birth Year" << endl
+		<< "6. Age" << endl;
 		int userSelection = intValidator(kSearchOptionMinimum, kSearchOptionMaximum);
 
 		vector<Contact> searchResults;
 		string searchCriteria = "";
+		int searchCriteriaNumber = 0;
 		switch (userSelection) {
 		case 1: searchCriteria = stringValidator("last name");
 			searchResults = _contactList.searchByLastName(searchCriteria);
@@ -101,6 +106,12 @@ vector<Contact> MenuIO::findContact()
 			break;
 		case 3: searchCriteria = stringValidator("city of residence");
 			searchResults = _contactList.searchByCity(searchCriteria);
+			break;
+		case 4: searchCriteriaNumber = intValidator(0, 12);
+			break;
+		case 5: searchCriteriaNumber = intValidator(1817, 2017);
+			break;
+		case 6: searchCriteriaNumber = intValidator(0, 200);
 			break;
 		default: cout << "Invalid selection" << endl;
 		}
@@ -117,17 +128,19 @@ void MenuIO::deleteContact()
 	vector<Contact> searchResults = findContact();
 	bool isFound = !searchResults.empty();
 	int counter = 0;
+	string userSelection = "";
 	if (isFound) {
 		cout << endl << "Matches Found : " << endl;
 		for (vector<Contact>::iterator it = searchResults.begin(); it != searchResults.end(); it++) {
 			counter++;
 			cout << counter << ". " << it->getFullName() << endl;
 		}
-		cout << endl << "Would you like to delete these contacts?" << endl;
-		string userSelection = stringValidator("'Y' or 'N'");
+		cout << "Would you like to delete these contacts?" << endl;
+		userSelection = stringValidator("'Y' or 'N'");
 		if (userSelection == "Y" || userSelection == "y") {
+			cout << "Deleting contacts..." << endl;
 			for (vector<Contact>::iterator it = searchResults.begin(); it != searchResults.end(); it++) {
-				_contactList.deleteContactByFirstName(it->getFirstName());
+				_contactList.deleteContact(it->getLastName());
 			}
 			cout << searchResults.size() << " contacts deleted." << endl;
 		}

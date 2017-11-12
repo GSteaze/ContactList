@@ -12,13 +12,12 @@ class ContactList
 private:
 	vector<Contact> _contactList;
 
-	bool compareContact(Contact a, Contact b);
-
-	
-
 public:
 	ContactList();
 	~ContactList();
+
+	bool compareContact(Contact &a, Contact &b);
+
 
 	void orderContactList();
 
@@ -30,11 +29,11 @@ public:
 
 	vector<Contact> searchByCity(string);
 
-	void deleteContactByLastName(string);
+	vector<Contact> searchByBirthMonth(int);
 
-	void deleteContactByFirstName(string);
+	vector<Contact> searchByBirthYear(int);
 
-	void deleteContactByCity(string);
+	vector<Contact> searchByAge(int);
 
 	void deleteContact(string);
 

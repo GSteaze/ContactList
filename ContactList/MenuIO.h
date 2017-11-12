@@ -14,7 +14,7 @@ private:
 	const int kMenuOptionMinimum = 1;
 	const int kMenuOptionMaximum = 5;
 	const int kSearchOptionMinimum = 1;
-	const int kSearchOptionMaximum = 3;
+	const int kSearchOptionMaximum = 6;
 
 public:
 	MenuIO();

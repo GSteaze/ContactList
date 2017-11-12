@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-//#include "Date.h"
+#include <ctime>
 
 using namespace std;
 
@@ -20,6 +20,13 @@ private:
 	string _birthday;
 	//Date _birthday;
 	string _fieldsOfContact[12];
+	int _birthYear;
+	int _birthMonth;
+	int _birthDayOfTheMonth;
+	int _age;
+
+	void setAge();
+	void setBirthdayValues();
 
 public:
 	Contact();
@@ -62,6 +69,14 @@ public:
 	string getFullName();
 
 	string toString();
+
+	int getAge();
+
+	int getMonth();
+
+	int getYear();
+
+	int getDayOfTheMonth();
 
 };
 

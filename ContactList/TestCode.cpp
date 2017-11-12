@@ -29,6 +29,10 @@ void TestCode::testContact()
 	cout << "Zip Code : " << testContact.getZipCode() << endl;
 	cout << "Email Address : " << testContact.getEmailAddress() << endl;
 	cout << "Birthday : " << testContact.getBirthday() << endl;
+	cout << "Day of the Month : " << testContact.getDayOfTheMonth() << endl;
+	cout << "Month : " << testContact.getMonth() << endl;
+	cout << "Year : " << testContact.getYear() << endl;
+	cout << "Age : " << testContact.getAge() << endl;
 }
 
 void TestCode::testContactList()
@@ -43,7 +47,7 @@ void TestCode::testContactList()
 	testContactList.testCode();
 
 	cout << endl;
-	testContactList.deleteContactByLastName("Casey");
+	testContactList.deleteContact("Casey");
 
 	testContactList.testCode();
 
