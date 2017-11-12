@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 #include "Contact.h"
-#include "Date.h"
+//#include "Date.h"
 
 void Contact::setGender(string gender) {
 	_gender = gender;
@@ -75,10 +75,12 @@ string Contact::getEmailAddress() {
 }
 
 void Contact::setBirthday(string birthday) {
-	_birthday = Date(birthday);
+	_birthday = birthday;
+	//_birthday = Date(birthday);
 }
 string Contact::getBirthday() {
-	return _birthday.getDate();
+	return _birthday;
+	//return _birthday.getDate();
 }
 
 string Contact::getFullName()
@@ -126,42 +128,53 @@ Contact::Contact() {
 
 Contact::Contact(string contactLine)
 {
-	if (contactLine[0] >= '0' && contactLine[0] <= '9') {
-		contactLine.erase(0, contactLine.find(',') + 1);
-	}
-
+	string tempLine = contactLine;
+	string token = "";
 	int fieldNumber = 0;
-	size_t pos = 0;
-	string token;
-	while ((pos = contactLine.find(',')) != string::npos) {
-		token = contactLine.substr(0, pos);
-		switch (fieldNumber) {
-		case 0: setGender(token);
+	char delimiter = ',';
+	int start = 0;
+	int numberOfFields = 12;
+
+	int end = tempLine.find(delimiter);
+	while (end != string::npos) {
+		token = tempLine.substr(start, (end - start));
+		_fieldsOfContact[fieldNumber] = token;
+		fieldNumber++;
+		start = end + 1;
+		end = tempLine.find(delimiter, start);
+	}
+	token = tempLine.substr(start, (end - start));
+	_fieldsOfContact[fieldNumber] = token;
+
+	for (int index = 0; index < numberOfFields; index++) {
+		switch (index) {
+		case 0: break;
+		case 1: setGender(_fieldsOfContact[index]);
 			break;
-		case 1: setTitle(token);
+		case 2: setTitle(_fieldsOfContact[index]);
 			break;
-		case 2: setFirstName(token);
+		case 3: setFirstName(_fieldsOfContact[index]);
 			break;
-		case 3: setMiddleInitial(token);
+		case 4: setMiddleInitial(_fieldsOfContact[index]);
 			break;
-		case 4: setLastName(token);
+		case 5: setLastName(_fieldsOfContact[index]);
 			break;
-		case 5: setStreetAddress(token);
+		case 6: setStreetAddress(_fieldsOfContact[index]);
 			break;
-		case 6: setCity(token);
+		case 7: setCity(_fieldsOfContact[index]);
 			break;
-		case 7: setState(token);
+		case 8: setState(_fieldsOfContact[index]);
 			break;
-		case 8: setZipCode(token);
+		case 9: setZipCode(_fieldsOfContact[index]);
 			break;
-		case 9: setEmailAddress(token);
+		case 10: setEmailAddress(_fieldsOfContact[index]);
 			break;
-		case 10: _birthday = Date(token);
+		case 11: setBirthday(_fieldsOfContact[index]);
+			//_birthday = Date(token);
 			break;
 		default: cout << "Invalid field detected" << endl;
 			break;
 		}
-		contactLine.erase(0, pos + 1);
 	}
 }
 

@@ -9,19 +9,20 @@ private:
 	int _day;
 	int _month;
 	int _year;
+	bool isNull;
 
 public:
 	Date();
 	Date(string date);
 	~Date();
 
-	void setDay();
+	void setDay(int);
 	int getDay();
 
-	void setMonth();
+	void setMonth(int);
 	int getMonth();
 
-	void setYear();
+	void setYear(int);
 	int getYear();
 
 	string getDate();

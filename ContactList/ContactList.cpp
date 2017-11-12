@@ -24,10 +24,10 @@ ContactList::~ContactList()
 {
 }
 
-void ContactList::orderContactList()
-{
-	sort(_contactList.begin(), _contactList.end(), ContactList::compareContact);
-}
+//void ContactList::orderContactList()
+//{
+//	sort(_contactList.begin(), _contactList.end(), ContactList::compareContact);
+//}
 
 void ContactList::fillFromFile()
 {
@@ -124,5 +124,5 @@ void ContactList::addContact()
 
 bool ContactList::isEmpty()
 {
-	_contactList.empty() ? true : false;
+	return _contactList.empty() ? true : false;
 }

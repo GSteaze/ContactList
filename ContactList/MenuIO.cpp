@@ -30,6 +30,7 @@ void MenuIO::displayMenu()
 			<< "5. Exit Program" << endl;
 
 		int userSelection = intValidator(kMenuOptionMinimum, kMenuOptionMaximum);
+		cout << endl;
 		vector<Contact> searchResults;
 		bool isSuccessful = false;
 		int counter = 0;
@@ -76,9 +77,8 @@ vector<Contact> MenuIO::findContact()
 	cout << "Search by : " << endl
 		<< "1. Last Name" << endl
 		<< "2. First Name" << endl
-		<< "3. City of Residence" << endl << endl
-		<< "Enter a number between" << kSearchOptionMinimum << " and " << kSearchOptionMaximum << " : ";
-		int userSelection = intValidator(kSearchOptionMinimum, kMenuOptionMaximum);
+		<< "3. City of Residence" << endl;
+		int userSelection = intValidator(kSearchOptionMinimum, kSearchOptionMaximum);
 
 		vector<Contact> searchResults;
 		string searchCriteria = "";
@@ -136,7 +136,7 @@ void MenuIO::clearContacts()
 
 int MenuIO::intValidator(int min, int max)
 {
-	cout << "Please enter a number between " << min << " and " << max << " : ";
+	cout << "Enter a number between " << min << " and " << max << " : ";
 	int userInput = 0;
 	bool isValidInput = false;
 	while (!isValidInput) {

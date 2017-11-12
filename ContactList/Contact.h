@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Date.h"
+//#include "Date.h"
 
 using namespace std;
 
@@ -17,7 +17,9 @@ private:
 	string _state;
 	string _zipCode;
 	string _emailAddress;
-	Date _birthday;
+	string _birthday;
+	//Date _birthday;
+	string _fieldsOfContact[12];
 
 public:
 	Contact();
