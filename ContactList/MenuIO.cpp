@@ -66,7 +66,7 @@ void MenuIO::displayMenu()
 
 bool MenuIO::loadContacts()
 {
-	_contactList.fillFromFile();
+	_contactList.fillFromFile("FakeNames.csv");
 	return _contactList.isEmpty() ? false : true;
 }
 

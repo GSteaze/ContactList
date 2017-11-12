@@ -22,7 +22,7 @@ public:
 
 	void orderContactList();
 
-	void fillFromFile();
+	void fillFromFile(string);
 
 	vector<Contact> searchByLastName(string);
 
@@ -43,6 +43,8 @@ public:
 	void addContact();
 
 	bool isEmpty();
+
+	void testCode();
 
 };
 

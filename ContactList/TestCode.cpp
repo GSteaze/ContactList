@@ -4,7 +4,7 @@
 
 TestCode::TestCode()
 {
-	testContact();
+	
 }
 
 
@@ -14,7 +14,7 @@ TestCode::~TestCode()
 
 void TestCode::testContact()
 {
-	cout << "Testing Contact Class : " << endl << endl;
+	cout << endl << "Testing Contact Class : " << endl << endl;
 
 	Contact testContact = Contact("1,male,Mr.,Hugo,L,Casey,3867 Hillcrest Circle,Rockford,MN,55373,HugoLCasey@dayrep.com,6/5/1990");
 	cout << "toString : " << testContact.toString() << endl;
@@ -29,4 +29,15 @@ void TestCode::testContact()
 	cout << "Zip Code : " << testContact.getZipCode() << endl;
 	cout << "Email Address : " << testContact.getEmailAddress() << endl;
 	cout << "Birthday : " << testContact.getBirthday() << endl;
+}
+
+void TestCode::testContactList()
+{
+	cout << endl << "Testing ContactList class : " << endl << endl;
+	ContactList testContactList = ContactList();
+	testContactList.fillFromFile("TestFile.csv");
+	testContactList.testCode();
+	testContactList.searchByLastName("Casey");
+
+
 }

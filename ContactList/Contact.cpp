@@ -132,12 +132,17 @@ Contact::Contact(string contactLine)
 	string token = "";
 	int fieldNumber = 0;
 	char delimiter = ',';
-	int start = 0;
-	int numberOfFields = 12;
+	int start = tempLine.find(delimiter) + 1;
+	int numberOfFields = 11;
 
-	int end = tempLine.find(delimiter);
+	int end = tempLine.find(delimiter, start);
 	while (end != string::npos) {
 		token = tempLine.substr(start, (end - start));
+
+		//Test
+		cout << "Field Number : " << fieldNumber << "\t Token : " << token << endl;
+
+
 		_fieldsOfContact[fieldNumber] = token;
 		fieldNumber++;
 		start = end + 1;
@@ -148,28 +153,27 @@ Contact::Contact(string contactLine)
 
 	for (int index = 0; index < numberOfFields; index++) {
 		switch (index) {
-		case 0: break;
-		case 1: setGender(_fieldsOfContact[index]);
+		case 0: setGender(_fieldsOfContact[index]);
 			break;
-		case 2: setTitle(_fieldsOfContact[index]);
+		case 1: setTitle(_fieldsOfContact[index]);
 			break;
-		case 3: setFirstName(_fieldsOfContact[index]);
+		case 2: setFirstName(_fieldsOfContact[index]);
 			break;
-		case 4: setMiddleInitial(_fieldsOfContact[index]);
+		case 3: setMiddleInitial(_fieldsOfContact[index]);
 			break;
-		case 5: setLastName(_fieldsOfContact[index]);
+		case 4: setLastName(_fieldsOfContact[index]);
 			break;
-		case 6: setStreetAddress(_fieldsOfContact[index]);
+		case 5: setStreetAddress(_fieldsOfContact[index]);
 			break;
-		case 7: setCity(_fieldsOfContact[index]);
+		case 6: setCity(_fieldsOfContact[index]);
 			break;
-		case 8: setState(_fieldsOfContact[index]);
+		case 7: setState(_fieldsOfContact[index]);
 			break;
-		case 9: setZipCode(_fieldsOfContact[index]);
+		case 8: setZipCode(_fieldsOfContact[index]);
 			break;
-		case 10: setEmailAddress(_fieldsOfContact[index]);
+		case 9: setEmailAddress(_fieldsOfContact[index]);
 			break;
-		case 11: setBirthday(_fieldsOfContact[index]);
+		case 10: setBirthday(_fieldsOfContact[index]);
 			//_birthday = Date(token);
 			break;
 		default: cout << "Invalid field detected" << endl;

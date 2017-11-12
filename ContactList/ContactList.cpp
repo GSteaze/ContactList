@@ -29,23 +29,24 @@ ContactList::~ContactList()
 //	sort(_contactList.begin(), _contactList.end(), ContactList::compareContact);
 //}
 
-void ContactList::fillFromFile()
+void ContactList::fillFromFile(string fileName)
 {
 	ifstream fin;
-	fin.open("FakeNames.csv");
+	fin.open(fileName);
 	while (!fin.eof()) {
 		string contactLine = "";
 		getline(fin, contactLine);
 		Contact newContact = Contact(contactLine);
-		_contactList.push_back(newContact);
+		_contactList.push_back(newContact);		
 	}
+	fin.close();
 }
 
 vector<Contact> ContactList::searchByLastName(string lastName)
 {
 	vector<Contact> lastNameMatches;
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
-		if (lastName.compare(it->getLastName())) {
+		if (lastName == (it->getLastName())) {
 			Contact matchingContact = Contact(it->toString());
 			lastNameMatches.push_back(matchingContact);
 		}
@@ -57,7 +58,7 @@ vector<Contact> ContactList::searchByFirstName(string firstName)
 {
 	vector<Contact> firstNameMatches;
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
-		if (firstName.compare(it->getFirstName())) {
+		if (firstName == (it->getFirstName())) {
 			Contact matchingContact = Contact(it->toString());
 			firstNameMatches.push_back(matchingContact);
 		}
@@ -69,7 +70,7 @@ vector<Contact> ContactList::searchByCity(string city)
 {
 	vector<Contact> cityMatches;
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
-		if (city.compare(it->getLastName())) {
+		if (city == (it->getLastName())) {
 			Contact matchingContact = Contact(it->toString());
 			cityMatches.push_back(matchingContact);
 		}
@@ -80,7 +81,7 @@ vector<Contact> ContactList::searchByCity(string city)
 void ContactList::deleteContactByLastName(string lastName)
 {
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
-		if (lastName.compare(it->getLastName())) {
+		if (lastName == (it->getLastName())) {
 			_contactList.erase(it);
 		}
 	}
@@ -89,7 +90,7 @@ void ContactList::deleteContactByLastName(string lastName)
 void ContactList::deleteContactByFirstName(string firstName)
 {
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
-		if (firstName.compare(it->getFirstName())) {
+		if (firstName == (it->getFirstName())) {
 			_contactList.erase(it);
 		}
 	}
@@ -98,7 +99,7 @@ void ContactList::deleteContactByFirstName(string firstName)
 void ContactList::deleteContactByCity(string city)
 {
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
-		if (city.compare(it->getLastName())) {
+		if (city == (it->getLastName())) {
 			_contactList.erase(it);
 		}
 	}
@@ -107,7 +108,7 @@ void ContactList::deleteContactByCity(string city)
 void ContactList::deleteContact(string contactLine)
 {
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
-		if (contactLine.compare(it->toString())) {
+		if (contactLine == (it->toString())) {
 			_contactList.erase(it);
 		}
 	}
@@ -126,3 +127,12 @@ bool ContactList::isEmpty()
 {
 	return _contactList.empty() ? true : false;
 }
+
+void ContactList::testCode()
+{
+	cout << "Current List" << endl;
+	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
+		cout << "1." << it->toString() << endl;
+	}
+}
+
