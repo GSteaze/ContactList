@@ -26,11 +26,11 @@ public:
 
 	bool loadContacts();
 
-	bool findContact();
+	vector<Contact> findContact();
 
-	bool deleteContact();
+	void deleteContact();
 
-	bool clearContacts();
+	void clearContacts();
 
 	int intValidator(int min, int max);
 

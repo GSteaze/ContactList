@@ -36,6 +36,8 @@ public:
 
 	void deleteContactByCity(string);
 
+	void deleteContact(string);
+
 	void deleteAllContacts();
 
 	void addContact();

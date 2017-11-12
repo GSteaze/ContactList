@@ -26,7 +26,7 @@ ContactList::~ContactList()
 
 void ContactList::orderContactList()
 {
-	sort(_contactList.begin(), _contactList.end(), compareContact);
+	sort(_contactList.begin(), _contactList.end(), ContactList::compareContact);
 }
 
 void ContactList::fillFromFile()
@@ -99,6 +99,15 @@ void ContactList::deleteContactByCity(string city)
 {
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
 		if (city.compare(it->getLastName())) {
+			_contactList.erase(it);
+		}
+	}
+}
+
+void ContactList::deleteContact(string contactLine)
+{
+	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
+		if (contactLine.compare(it->toString())) {
 			_contactList.erase(it);
 		}
 	}

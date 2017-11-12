@@ -4,6 +4,8 @@
 
 MenuIO::MenuIO()
 {
+	displayWelcomeMessage();
+	displayMenu();
 }
 
 
@@ -18,46 +20,56 @@ void MenuIO::displayWelcomeMessage()
 
 void MenuIO::displayMenu()
 {
-	cout << endl << "Menu" << endl;
-	cout << "1. Load Contacts" << endl
-		<< "2. Search Contacts" << endl
-		<< "3. Delete Contacts" << endl
-		<< "4. Delete All Contacts" << endl
-		<< "5. Exit Program" << endl;
+	bool isAgain = true;
+	while (isAgain) {
+		cout << endl << "Menu" << endl;
+		cout << "1. Load Contacts" << endl
+			<< "2. Search Contacts" << endl
+			<< "3. Delete Contact(s)" << endl
+			<< "4. Delete All Contacts" << endl
+			<< "5. Exit Program" << endl;
 
-	int userSelection = intValidator(kMenuOptionMinimum, kMenuOptionMaximum);
-	switch (userSelection) {
-	case 1: cout << "Loading Contacts..." << endl;
-		bool isSuccessful = loadContacts();
-		if (isSuccessful) {
-			cout << "Contacts Loaded." << endl;
+		int userSelection = intValidator(kMenuOptionMinimum, kMenuOptionMaximum);
+		vector<Contact> searchResults;
+		bool isSuccessful = false;
+		int counter = 0;
+		switch (userSelection) {
+		case 1: cout << "Loading Contacts..." << endl;
+			isSuccessful = loadContacts();
+			if (isSuccessful) {
+				cout << "Contacts Loaded." << endl;
+			}
+			else {
+				cout << "Contacts not found." << endl;
+			}
+			break;
+		case 2:searchResults = findContact();
+			if (!searchResults.empty()) {
+				cout << "Matches Found : " << endl;
+				for (vector<Contact>::iterator it = searchResults.begin(); it != searchResults.end(); it++) {
+					counter++;
+					cout << counter << ". " << it->getFullName() << endl;
+				}
+			}
+			break;
+		case 3: deleteContact();
+			break;
+		case 4: cout << "Closing Program." << endl;
+			isAgain = false;
+			break;
+		default: cout << "Invalid Selection." << endl;
 		}
-		else {
-			cout << "Contacts not found." << endl;
-		}
-		break;
-	case 2:bool isFound = findContact();
-		if (!isFound) {
-			cout << "No matches found." << endl;
-		}
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
-	default: cout << "Invalid Selection." << endl;
 	}
-
 	
 }
 
 bool MenuIO::loadContacts()
 {
 	_contactList.fillFromFile();
-	_contactList.isEmpty() ? false : true;
+	return _contactList.isEmpty() ? false : true;
 }
 
-bool MenuIO::findContact()
+vector<Contact> MenuIO::findContact()
 {
 	bool isFound = false;
 
@@ -83,33 +95,43 @@ bool MenuIO::findContact()
 		default: cout << "Invalid selection" << endl;
 		}
 
-		int counter = 0;
-		if (!searchResults.empty()) {
-			isFound = true;
-			cout << "Matches Found : " << endl;
-			for (vector<Contact>::iterator it = searchResults.begin(); it != searchResults.end(); it++) {
-				counter++;
-				cout << counter << ". " << it->getFullName() << endl;
-			}
+		if (!isFound) {
+			cout << "No matches found." << endl;
 		}
-		return isFound;
+
+		return searchResults;
 }
 
-bool MenuIO::deleteContact()
+void MenuIO::deleteContact()
 {
-	bool isFound = findContact();
-
+	vector<Contact> searchResults = findContact();
+	bool isFound = !searchResults.empty();
+	int counter = 0;
 	if (isFound) {
-		cout << "Would you like to delete these contacts?" << endl;
+		cout << "Matches Found : " << endl;
+		for (vector<Contact>::iterator it = searchResults.begin(); it != searchResults.end(); it++) {
+			counter++;
+			cout << counter << ". " << it->getFullName() << endl;
+		}
+		cout << endl << "Would you like to delete these contacts?" << endl;
 		string userSelection = stringValidator("'Y' or 'N'");
+		if (userSelection.compare("Y") || userSelection.compare("y")) {
+			for (vector<Contact>::iterator it = searchResults.begin(); it != searchResults.end(); it++) {
+				_contactList.deleteContact(it->toString());
+			}
+		}
+		else {
+			cout << "No contacts deleted." << endl;
+		}
 	}
 	else {
 		cout << "No matches found." << endl;
 	}
 }
 
-bool MenuIO::clearContacts()
+void MenuIO::clearContacts()
 {
+	_contactList.deleteAllContacts();
 }
 
 int MenuIO::intValidator(int min, int max)
