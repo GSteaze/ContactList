@@ -30,11 +30,17 @@ public:
 
 	vector<Contact> searchByCity(string);
 
-	void deleteContact(string);
+	void deleteContactByLastName(string);
+
+	void deleteContactByFirstName(string);
+
+	void deleteContactByCity(string);
 
 	void deleteAllContacts();
 
 	void addContact();
+
+	bool isEmpty();
 
 };
 

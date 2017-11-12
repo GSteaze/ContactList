@@ -24,7 +24,7 @@ public:
 	void setYear();
 	int getYear();
 
-	void getDate();
+	string getDate();
 
 };
 

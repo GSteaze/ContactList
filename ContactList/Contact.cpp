@@ -75,10 +75,21 @@ string Contact::getEmailAddress() {
 }
 
 void Contact::setBirthday(string birthday) {
-	Date birthday = Date(birthday);
+	_birthday = Date(birthday);
 }
 string Contact::getBirthday() {
 	return _birthday.getDate();
+}
+
+string Contact::getFullName()
+{
+	string fullName = "";
+	fullName.append(getFirstName());
+	fullName.append(" ");
+	fullName.append(getMiddleInitial());
+	fullName.append(" ");
+	fullName.append(getLastName());
+	return fullName;
 }
 
 string Contact::toString() {
@@ -145,7 +156,8 @@ Contact::Contact(string contactLine)
 			break;
 		case 9: setEmailAddress(token);
 			break;
-		case 10: setBirthday(token);
+		case 10: _birthday = Date(token);
+			break;
 		default: cout << "Invalid field detected" << endl;
 			break;
 		}
