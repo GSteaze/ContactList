@@ -10,7 +10,8 @@ int main() {
 
 	TestCode test = TestCode();
 	test.testContact();
-	//test.testContactList();
+	test.testContactList();
+	//test.testMenuIO();
 
 	system("pause");
 	return 0;

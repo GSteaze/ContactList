@@ -132,17 +132,15 @@ Contact::Contact(string contactLine)
 	string token = "";
 	int fieldNumber = 0;
 	char delimiter = ',';
-	int start = tempLine.find(delimiter) + 1;
 	int numberOfFields = 11;
-
-	int end = tempLine.find(delimiter, start);
+	int start = 0;
+	int end = tempLine.find(delimiter);
+	if (tempLine[0] >= '0' && tempLine[0] <= '9') {
+		start = tempLine.find(delimiter) + 1;
+		end = tempLine.find(delimiter, start);
+	}
 	while (end != string::npos) {
 		token = tempLine.substr(start, (end - start));
-
-		//Test
-		cout << "Field Number : " << fieldNumber << "\t Token : " << token << endl;
-
-
 		_fieldsOfContact[fieldNumber] = token;
 		fieldNumber++;
 		start = end + 1;

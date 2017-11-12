@@ -33,8 +33,9 @@ void ContactList::fillFromFile(string fileName)
 {
 	ifstream fin;
 	fin.open(fileName);
+	string contactLine = "";
+	getline(fin, contactLine);	
 	while (!fin.eof()) {
-		string contactLine = "";
 		getline(fin, contactLine);
 		Contact newContact = Contact(contactLine);
 		_contactList.push_back(newContact);		
@@ -80,17 +81,33 @@ vector<Contact> ContactList::searchByCity(string city)
 
 void ContactList::deleteContactByLastName(string lastName)
 {
+	vector<Contact> newContactList;
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
-		if (lastName == (it->getLastName())) {
-			_contactList.erase(it);
+		if (lastName != (it->getLastName())) {
+			Contact copyContact = Contact(it->toString());
+			newContactList.push_back(copyContact);
 		}
 	}
+	_contactList = newContactList;
 }
 
 void ContactList::deleteContactByFirstName(string firstName)
 {
+	//Test
+	cout << "Entering delete: " << firstName << endl;
+
+
 	for (vector<Contact>::iterator it = _contactList.begin(); it != _contactList.end(); it++) {
+		
+		//Test
+		cout << firstName << "\tlistName : " << it->getFirstName() << endl;
+		
+		
 		if (firstName == (it->getFirstName())) {
+			
+			//Test
+			cout << "Name to be deleted : " << it->toString() << endl;
+
 			_contactList.erase(it);
 		}
 	}

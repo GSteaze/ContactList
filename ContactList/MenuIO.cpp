@@ -34,6 +34,8 @@ void MenuIO::displayMenu()
 		vector<Contact> searchResults;
 		bool isSuccessful = false;
 		int counter = 0;
+		string userYesOrNo = "";
+
 		switch (userSelection) {
 		case 1: cout << "Loading Contacts..." << endl;
 			isSuccessful = loadContacts();
@@ -46,7 +48,7 @@ void MenuIO::displayMenu()
 			break;
 		case 2:searchResults = findContact();
 			if (!searchResults.empty()) {
-				cout << "Matches Found : " << endl;
+				cout << endl << "Matches Found : " << endl;
 				for (vector<Contact>::iterator it = searchResults.begin(); it != searchResults.end(); it++) {
 					counter++;
 					cout << counter << ". " << it->getFullName() << endl;
@@ -55,7 +57,17 @@ void MenuIO::displayMenu()
 			break;
 		case 3: deleteContact();
 			break;
-		case 4: cout << "Closing Program." << endl;
+		case 4: cout << "Are you sure that you would like to delete these contacts?" << endl;
+			userYesOrNo = stringValidator("'Y' or 'N'");
+			if (userYesOrNo == "Y" || userYesOrNo == "y") {
+				clearContacts();
+				cout << "Contacts cleared." << endl;
+			}
+			else {
+				cout << "No contacts deleted." << endl;
+			}
+			break;
+		case 5: cout << "Closing Program." << endl;
 			isAgain = false;
 			break;
 		default: cout << "Invalid Selection." << endl;
@@ -72,8 +84,6 @@ bool MenuIO::loadContacts()
 
 vector<Contact> MenuIO::findContact()
 {
-	bool isFound = false;
-
 	cout << "Search by : " << endl
 		<< "1. Last Name" << endl
 		<< "2. First Name" << endl
@@ -95,7 +105,7 @@ vector<Contact> MenuIO::findContact()
 		default: cout << "Invalid selection" << endl;
 		}
 
-		if (!isFound) {
+		if (searchResults.empty()) {
 			cout << "No matches found." << endl;
 		}
 
@@ -108,17 +118,18 @@ void MenuIO::deleteContact()
 	bool isFound = !searchResults.empty();
 	int counter = 0;
 	if (isFound) {
-		cout << "Matches Found : " << endl;
+		cout << endl << "Matches Found : " << endl;
 		for (vector<Contact>::iterator it = searchResults.begin(); it != searchResults.end(); it++) {
 			counter++;
 			cout << counter << ". " << it->getFullName() << endl;
 		}
 		cout << endl << "Would you like to delete these contacts?" << endl;
 		string userSelection = stringValidator("'Y' or 'N'");
-		if (userSelection.compare("Y") || userSelection.compare("y")) {
+		if (userSelection == "Y" || userSelection == "y") {
 			for (vector<Contact>::iterator it = searchResults.begin(); it != searchResults.end(); it++) {
-				_contactList.deleteContact(it->toString());
+				_contactList.deleteContactByFirstName(it->getFirstName());
 			}
+			cout << searchResults.size() << " contacts deleted." << endl;
 		}
 		else {
 			cout << "No contacts deleted." << endl;
@@ -157,17 +168,19 @@ string MenuIO::stringValidator(string desiredField)
 {
 	cout << "Please enter " << desiredField << " : ";
 	string userInput = "";
-	bool isValidInput = false;
-	while (!isValidInput) {
-		cin.clear();
-		getline(cin, userInput);
-		if (cin.fail() || userInput.empty()) {
-			cout << "Please try again : ";
+	cin.ignore(kEndOfLine, '\n');
+	getline(cin, userInput);
+
+	bool isValid = false;
+	while (!isValid) {
+		if (userInput.empty()) {
+			cout << "Phrase cannot be empty." << endl
+				<< "Please try again : ";
 			cin.clear();
-			cin.ignore(kEndOfLine, '\n');
+			getline(cin, userInput);
 		}
 		else {
-			isValidInput = true;
+			isValid = true;
 		}
 	}
 	return userInput;
