@@ -133,25 +133,33 @@ void Contact::setBirthdayValues()
 	int numberOfFields = 3;
 	int start = 0;
 	int end = tempLine.find(delimiter);
-	int fieldsOfBirthday[3];
+	string fieldsOfBirthday[3];
 
 	while (end != string::npos) {
 		token = tempLine.substr(start, (end - start));
-		fieldsOfBirthday[fieldNumber] = stoi(token);
+
+		//Test
+		cout << token << endl;
+
+		fieldsOfBirthday[fieldNumber] = (token);
 		fieldNumber++;
 		start = end + 1;
 		end = tempLine.find(delimiter, start);
 	}
 	token = tempLine.substr(start, (end - start));
-	fieldsOfBirthday[fieldNumber] = stoi(token);
+
+	//Test
+	cout << token << endl;
+
+	fieldsOfBirthday[fieldNumber] = (token);
 
 	for (int index = 0; index < numberOfFields; index++) {
 		switch (index) {
-		case 0: _birthMonth = fieldsOfBirthday[index];
+		case 0: _birthMonth = stoi(fieldsOfBirthday[index]);
 			break;
-		case 1: _birthDayOfTheMonth = fieldsOfBirthday[index];
+		case 1: _birthDayOfTheMonth = stoi(fieldsOfBirthday[index]);
 			break;
-		case 2: _birthYear = fieldsOfBirthday[index];
+		case 2: _birthYear = stoi(fieldsOfBirthday[index]);
 			break;
 		default: cout << "Invalid field detected" << endl;
 			break;
