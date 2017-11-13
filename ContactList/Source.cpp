@@ -8,8 +8,9 @@ int main() {
 
 	MenuIO menu = MenuIO();
 
-	//TestCode test = TestCode();
-	//test.testContact();
+	/*TestCode test = TestCode();
+	test.testContact();
+	test.testContactList();*/
 
 	system("pause");
 	return 0;

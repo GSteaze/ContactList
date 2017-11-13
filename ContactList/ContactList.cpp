@@ -43,7 +43,6 @@ void ContactList::fillFromFile(string fileName)
 		_contactList.push_back(newContact);		
 	}
 	fin.close();
-	_contactList.pop_back();
 	//orderContactList();
 }
 

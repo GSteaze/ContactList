@@ -46,17 +46,21 @@ void TestCode::testContactList()
 
 	testContactList.testCode();
 
-	cout << endl;
-	testContactList.deleteContact("Casey");
+	
+
+	//cout << endl;
+	//testContactList.deleteContact("Casey");
 
 	testContactList.testCode();
 
-	//vector<Contact> testResults = testContactList.searchByLastName("Casey");
-	//for (vector<Contact>::iterator it = testResults.begin(); it != testResults.end(); it++) {
-	//	cout << it->toString() << endl;
-	//	cout << it->getGender() << endl;
-	//	cout << it->getBirthday() << endl;
-	//}
+	vector<Contact> testResults = testContactList.searchByBirthYear(1990);
+	for (vector<Contact>::iterator it = testResults.begin(); it != testResults.end(); it++) {
+		cout << it->toString() << endl;
+		cout << it->getGender() << endl;
+		cout << it->getBirthday() << endl;
+		cout << it->getAge() << endl;
+		cout << it->getYear() << endl;
+	}
 	//testContactList.deleteContact("1, male, Mr., Hugo, L, Casey, 3867 Hillcrest Circle, Rockford, MN, 55373, HugoLCasey@dayrep.com, 6 / 5 / 1990");
 	//testContactList.testCode();
 }

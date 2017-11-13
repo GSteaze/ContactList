@@ -124,50 +124,42 @@ string Contact::toString() {
 
 }
 
-void Contact::setBirthdayValues()
-{
-	string tempLine = _birthday;
-	string token = "";
-	int fieldNumber = 0;
-	char delimiter = '/';
-	int numberOfFields = 3;
-	int start = 0;
-	int end = tempLine.find(delimiter);
-	string fieldsOfBirthday[3];
-
-	while (end != string::npos) {
-		token = tempLine.substr(start, (end - start));
-
-		//Test
-		cout << token << endl;
-
-		fieldsOfBirthday[fieldNumber] = (token);
-		fieldNumber++;
-		start = end + 1;
-		end = tempLine.find(delimiter, start);
-	}
-	token = tempLine.substr(start, (end - start));
-
-	//Test
-	cout << token << endl;
-
-	fieldsOfBirthday[fieldNumber] = (token);
-
-	for (int index = 0; index < numberOfFields; index++) {
-		switch (index) {
-		case 0: _birthMonth = stoi(fieldsOfBirthday[index]);
-			break;
-		case 1: _birthDayOfTheMonth = stoi(fieldsOfBirthday[index]);
-			break;
-		case 2: _birthYear = stoi(fieldsOfBirthday[index]);
-			break;
-		default: cout << "Invalid field detected" << endl;
-			break;
-		}
-
-	}
-	setAge();
-}
+//void Contact::setBirthdayValues()
+//{
+//	string tempLine = _birthday;
+//	string token = "";
+//	int fieldNumber = 0;
+//	char delimiter = '/';
+//	int numberOfFields = 3;
+//	int start = 0;
+//	int end = tempLine.find(delimiter);
+//	string fieldsOfBirthday[3];
+//
+//	while (end != string::npos) {
+//		token = tempLine.substr(start, (end - start));
+//		fieldsOfBirthday[fieldNumber] = (token);
+//		fieldNumber++;
+//		start = end + 1;
+//		end = tempLine.find(delimiter, start);
+//	}
+//	token = tempLine.substr(start, (end - start));
+//	fieldsOfBirthday[fieldNumber] = (token);
+//
+//	for (int index = 0; index < numberOfFields; index++) {
+//		switch (index) {
+//		case 0: _birthMonth = stoi(fieldsOfBirthday[index]);
+//			break;
+//		case 1: _birthDayOfTheMonth = stoi(fieldsOfBirthday[index]);
+//			break;
+//		case 2: _birthYear = stoi(fieldsOfBirthday[index]);
+//			break;
+//		default: cout << "Invalid field detected" << endl;
+//			break;
+//		}
+//
+//	}
+//	setAge();
+//}
 
 void Contact::setAge() {
 	int currentDay = 12;
@@ -294,7 +286,7 @@ Contact::Contact(string contactLine)
 			break;
 		}
 	}
-	setBirthdayValues();
+	//setBirthdayValues();
 }
 
 
